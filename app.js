@@ -1,25 +1,36 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
+const passport = require('passport');
+const session = require('express-session');
 const morgan = require('morgan');
 
+// load config
+dotenv.config({path: "./config/config.env"});
+
+// passport config
+require('./config/passport')(passport);
 
 const app = express();
-const connectDB = require('./db');
+const connectDB = require('./config/db');
 connectDB();
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended:true}));
 
-dotenv.config();
-app.get("/", function(req, res) {
-    res.json({page: "you have reached the home page"})
-});
+// session
+app.use(session({
+    secret: 'oauth is weird',
+    resave: false,
+    saveUninitialized: true,
+}))
 
-app.get("/doubts", function(req, res) {
-    const doubt = ["how to do this in math", "what is science"]
-    res.json({data: doubt})
-});
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
+app.use('/', require('./routes/index'));
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, function() {
