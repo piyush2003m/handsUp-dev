@@ -21,8 +21,6 @@ app.get("/doubts", function(req, res) {
     res.json({data: doubt})
 });
 
-"nishil is COD noob"
-
 const PORT = process.env.PORT || 5000
 app.listen(PORT, function() {
 	console.log('doubt website is live');
