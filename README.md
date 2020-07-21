@@ -1,5 +1,12 @@
 # Documentation:
 
+## setup
+
+1 npm install
+
+2. duplicate config.sample.env and rename it to 'config.env' and google secret and client id.
+3. npm run dev
+
 # Routes
 
 #### @METHOD -> @ROUTE -> @DESC -> @AUTH

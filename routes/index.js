@@ -2,22 +2,30 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-// home page
-// unable to create a new user
-router.get('/', async (req, res, next) => {
-    try {
-        const user = await User.create({ displayName: 'Nishil', googleId: 'gibberish', firstName: 'Pi' });
-        res.json({ user });
-    } catch (err) {
-        next(err);
-    }
+// GET to /
+router.get('/', (req, res, next) => {
+	res.status(200).json({ data: 'success' });
 });
 
-// doubts
-router.get('/doubts', (req, res) => {
-    res.send("you have logged in and ready to see the doubts!");
-})
+const sampleObj = {
+	googleId: '141311414',
+	displayName: 'Alex M.',
+	firstName: 'Alex',
+	role: 'student',
+	email: 'demo@gmail.com',
+	image: 'https://image.com',
+};
 
+// POST: '/demo' - > create route will add a sample object without login ( test )
+router.get('/demo', async (req, res, next) => {
+	try {
+		const user = await User.create({ ...sampleObj });
 
+		res.json({ user });
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+});
 
 module.exports = router;
