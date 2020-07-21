@@ -3,6 +3,7 @@ const router = express.Router();
 const Student = require('../models/student');
 
 // home page
+// unable to create a new user
 router.get('/', (req, res) => {
     Student.create({displayName: "Piyush"}, (err, student) => {
         res.send(student);

@@ -6,11 +6,6 @@
 
 ## [ ] User
 
-<<<<<<< HEAD
-- [ ] /
-- [ ] /auth/google (process for logging in)
-- [ ] /doubts (redirected to after login)
-=======
 - [ ] GET -> api/v1/users/ -> Get all users -> PRIVATE/ADMIN
 - [ ] GET -> api/v1/users/:id -> Get all users -> PRIVATE/TEACHER/CLASSMATES
 - [ ] PUT -> api/v1/users/:userid -> update a user -> PRIVATE/USER
@@ -86,4 +81,3 @@
 - [ ] votes
 - [ ] text
 - [ ] userId
->>>>>>> 64c78cc7f7944fe3d585c07b6dbdcded9dd523b9
