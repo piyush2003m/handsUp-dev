@@ -9,10 +9,8 @@ router.get('/google', passport.authenticate('google', {scope : ['profile']}))
 
 // After user accepts
 // GET /auth/google
-router.get('/google/callback', passport.authenticate('google', {
-    failureRedirect: '/login'
-}), (req, res) => {
-    res.redirect('/doubts')
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+    res.send('login')
 })
 
 module.exports = router;

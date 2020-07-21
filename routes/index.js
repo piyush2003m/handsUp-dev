@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Student = require('../models/student');
+const User = require('../models/User');
 
 // home page
 // unable to create a new user
-router.get('/', (req, res) => {
-    Student.create({displayName: "Piyush"}, (err, student) => {
-        res.send(student);
-        console.log(student);
-    })
-})
+router.get('/', async (req, res, next) => {
+    try {
+        const user = await User.create({ displayName: 'Nishil', googleId: 'gibberish', firstName: 'Pi' });
+        res.json({ user });
+    } catch (err) {
+        next(err);
+    }
+});
 
 // doubts
 router.get('/doubts', (req, res) => {
