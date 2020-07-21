@@ -9,14 +9,31 @@ module.exports = function(passport) {
         callbackURL: '/auth/google/callback'
     },
     async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
+        const newStudent = {
+          googleId: profile.id,
+          displayName: profile.displayName,
+          firstName: profile.name.givenName,
+          image: profile.photos[0].value
+        }
+        try {
+          let student = await Student.find({googleId: profile.id})
+          if(student) {
+            done(null, student)
+          } else {
+            student = await Student.create(newStudent)
+            done(null, student)
+          }
+        }
+        catch (err) {
+          console.log(err)
+        }
     }))
 
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
-      });
-      
-      passport.deserializeUser((id, done) => {
-        Student.findById(id, (err, user) => done(err, user))
-      });
+      done(null, user);
+    });
+    
+    passport.deserializeUser(function(user, done) {
+      done(null, user);
+    });
 }

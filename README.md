@@ -9,4 +9,6 @@
 
 ## Routes
 
-- [ ] /api/v1/routes/demo
+- [ ] /
+- [ ] /auth/google (process for logging in)
+- [ ] /doubts (redirected to after login)

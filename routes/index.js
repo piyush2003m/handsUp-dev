@@ -1,11 +1,21 @@
 const express = require("express");
 const { Router } = require("express");
 const router = express.Router();
+const Student = require('../models/student');
 
-//login page
+// home page
 router.get('/', (req, res) => {
-    res.send("login");
+    Student.create({displayName: "Piyush"}, (err, student) => {
+        res.send(student);
+        console.log(student);
+    })
 })
+
+// doubts
+router.get('/doubts', (req, res) => {
+    res.send("you have logged in and ready to see the doubts!");
+})
+
 
 
 module.exports = router;
