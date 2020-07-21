@@ -73,18 +73,18 @@
 ## Question
 
 - [ ] questionId
-- [ ] topic
-- [ ] votes
-- [ ] subject
+- [x] topic
+- [x] votes
+- [x] subject
 - [ ] classId
-- [ ] text
-- [ ] answers - array
-- [ ] correctAnswer
-- [ ] askedBy - userid
+- [x] text
+- [x] answers - array
+- [x] correctAnswer
+- [x] askedBy - userid
 
 ## Comment
 
 - [ ] questionId
-- [ ] votes
-- [ ] text
-- [ ] userId
+- [x] votes
+- [x] text
+- [x] userId
