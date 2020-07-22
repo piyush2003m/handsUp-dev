@@ -15,11 +15,11 @@ const questionSchema = new mongoose.Schema({
     },
     votes: {
         type: Number,
-        required: true,
+        default: 0,
     },
-	correctAnswer: {
-		type: String,
-		required: true,
+	isCorrectAnswer: {
+		type: Boolean,
+		default: false,
 	},
 	askedBy: {
 		type: mongoose.Schema.Types.ObjectId,

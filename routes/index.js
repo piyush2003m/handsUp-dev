@@ -4,7 +4,12 @@ const User = require('../models/User');
 
 // GET to /
 router.get('/', (req, res, next) => {
+	if (req.user) {
+		res.json({user: req.user})
+	}
+	else {
 	res.status(200).json({ data: 'success' });
+	}
 });
 
 const sampleObj = {
@@ -19,7 +24,7 @@ const sampleObj = {
 // POST: '/demo' - > create route will add a sample object without login ( test )
 router.get('/demo', async (req, res, next) => {
 	try {
-		const user = await User.create({ ...sampleObj });
+		const user = await User.create(sampleObj);
 
 		res.json({ user });
 	} catch (err) {
