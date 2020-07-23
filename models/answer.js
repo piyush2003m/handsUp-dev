@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const answerSchema = new mongoose.Schema({
 	votes: {
-        type: Number
+        type: Number,
+        default: 0
     },
     text: {
         type: String

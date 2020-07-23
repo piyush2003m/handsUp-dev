@@ -16,13 +16,13 @@ require('./config/passport')(passport);
 const app = express();
 
 // body-parser middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 const connectDB = require('./config/db');
 connectDB();
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // session
 app.use(
