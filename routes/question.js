@@ -52,11 +52,39 @@ router.post('/:id/answer/create', async (req, res) => {
         next(err)
     }
 })
-    
+
+// POST /question/:id/update for specific question
+router.post('/:id/update', async(req, res) => {
+    try {
+        const updatedQuestion = await Question.findOneAndUpdate({_id: req.params.id}, 
+        { $set:
+            {
+                topic: req.body.topic,
+                text: req.body.text,
+            }
+         }, {new: true})
+         res.json({updatedQuestion});
+    }
+    catch (err) {
+        console.log(err)
+        next(err)
+    }
+})
+
+router.post('/:id/delete', async(req, res) => {
+    try {
+        await Question.findByIdAndDelete({_id: req.params.id})
+        res.redirect('/question')
+    } catch(err) {
+        console.log(err)
+        next(err)
+    }
+})
+
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {
     try {
-    const question = await Question.findById(req.params.id).populate('askedBy')
+    const question = await Question.findById(req.params.id).populate('askedBy answers')
     res.json(question)
     } catch(err) {
         console.log(err)

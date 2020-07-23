@@ -17,18 +17,14 @@ const questionSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-	isCorrectAnswer: {
-		type: Boolean,
-		default: false,
-	},
 	askedBy: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
 	},
-	answers: [
+	answers: 
         {type : mongoose.Schema.ObjectId, 
-        ref : 'Answer'} 
-    ],
+        ref : 'Answer'
+    },
     images: [
         {type: String} 
     ],

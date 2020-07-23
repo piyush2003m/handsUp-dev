@@ -15,7 +15,10 @@ const answerSchema = new mongoose.Schema({
     answeredBy: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
-	},
+  },
+  images: [
+    {type: String} 
+  ]
 });
 
 module.exports = mongoose.model('Answer', answerSchema);
