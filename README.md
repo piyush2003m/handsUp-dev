@@ -65,7 +65,7 @@
 
 ## Classroom
 
-- [ ] classId
+- [x] classId
 - [ ] className
 - [ ] teacherID
 - [ ] students - array
