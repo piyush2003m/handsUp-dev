@@ -3,18 +3,24 @@ const router = express.Router();
 const User = require('../models/Question');
 const { ensureAuth } = require('../middleware/auth');
 const Question = require('../models/Question');
+var ObjectId = require('mongodb').ObjectID;
+
 
 // POST /question/create
-router.post('/create', ensureAuth(), async (req, res) => {
-    const newQuestion = {
-        topic: "Trigonometry functions",
-        subject: "Math AA HL",
-        text: "How to integrate sec(x)",
-        askedBy: req.user.id
-    }
-    const question = await Question.create({newQuestion})
+router.post('/create', async (req, res) => {  
+    const question = await Question.create({
+        topic: req.body.topic,
+        subject: req.body.subject,
+        text: req.body.text,
+        askedBy: ObjectId("5f17acfb2ff9a991dd58f872")
+    })
     res.json({question})
 })
 
-module.exports = router;
+// GET /question/:id for specific question
+router.get('/:id', async (req, res) => {
+    const question = await Question.findById(req.params.id).populate('askedBy')
+    res.json(question)
+})
 
+module.exports = router;

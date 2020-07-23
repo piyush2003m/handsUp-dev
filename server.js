@@ -14,6 +14,10 @@ dotenv.config({ path: './config/config.env' });
 require('./config/passport')(passport);
 
 const app = express();
+
+// body-parser middleware
+app.use(bodyParser.json());
+
 const connectDB = require('./config/db');
 connectDB();
 

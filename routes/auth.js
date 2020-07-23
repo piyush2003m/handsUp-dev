@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const { ensureAuth } = require('../middleware/auth');
+
 
 // POST /auth/google
 router.get(
