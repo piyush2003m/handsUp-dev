@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const {ensureAuth} = require('../middleware/auth')
 
 // GET to /
 router.get('/', (req, res, next) => {
@@ -20,6 +21,7 @@ const sampleObj = {
 	email: 'demo@gmail.com',
 	image: 'https://image.com',
 };
+
 
 // POST: '/demo' - > create route will add a sample object without login ( test )
 router.get('/demo', async (req, res, next) => {

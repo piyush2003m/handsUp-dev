@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/Question');
 const { ensureAuth } = require('../middleware/auth');
 const Question = require('../models/Question');
+const Solved = require('../models/Solved');
 const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
 
@@ -71,15 +72,26 @@ router.post('/:id/update', async(req, res) => {
     }
 })
 
+// POST /question/:id/delete delete specific question
 router.post('/:id/delete', async(req, res) => {
     try {
-        await Question.findByIdAndDelete({_id: req.params.id})
-        res.redirect('/question')
+        await Question.findById(req.params.id, (err, question) => {
+            console.log("this is question " + question)
+            question.answers.forEach((answer) => {
+                Answer.findByIdAndDelete({_id: answer})
+            })
+        }, async () => {
+            await Question.findByIdAndDelete({_id: req.params.id})
+            res.redirect('/question')
+        })
+        
     } catch(err) {
         console.log(err)
         next(err)
     }
 })
+
+
 
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {

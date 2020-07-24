@@ -7,13 +7,13 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session)
 
+const app = express();
+
 // load config
 dotenv.config({ path: './config/config.env' });
 
 // passport config
 require('./config/passport')(passport);
-
-const app = express();
 
 // body-parser middleware
 app.use(express.json());
