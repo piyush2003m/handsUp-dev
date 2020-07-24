@@ -33,30 +33,30 @@
 
 ## User
 
-- [ ] Google Id
-- [ ] Name
-- [ ] Role
-- [ ] Google Token
-- [ ] Email
-- [ ] ClassroomId - array
-- [ ] ProfilePic
-- [ ] Questions - array
+- [ ] googleId
+- [ ] firstName
+- [ ] displayName
+- [ ] image
+- [ ] role
+- [ ] image
+- [ ] createdAt
 
 ## Question
 
-- [ ] questionId
 - [x] topic
 - [x] votes
 - [x] subject
-- [ ] classId
 - [x] text
-- [x] answers - array
-- [x] correctAnswer
-- [x] askedBy - userid
+- [x] votes
+- [x] images - array
+- [x] answers - array of Answer ID
+- [x] correctAnswer - User ID
+- [x] askedBy - User ID
 
-## Comment
+## Answer
 
-- [ ] questionId
 - [x] votes
 - [x] text
-- [x] userId
+- [x] createdAt
+- [x] images - array
+- [x] answeredBy - User ID
