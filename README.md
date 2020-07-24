@@ -19,14 +19,14 @@
 ## [ ] Question
 - [ ] GET -> /question -> Get all unanwered questions
 - [ ] POST -> /question/create -> Create a new question
-- [ ] POST -> /question/:id/update -> Update a specific question, id of question
-- [ ] POST -> /question/:id/delete -> Delete a particular question, id of question
+- [ ] PUT -> /question/:id -> Update a specific question, id of question
+- [ ] DELETE -> /question/:id -> Delete a particular question, id of question
 - [ ] GET -> /question/:id -> View a specific question with answers
 
 ## [ ] Answer
 - [ ] POST -> /question/:id/answer/create -> Add answer to a specific question, id of question
-- [ ] POST -> /answer/:id/update, id of answer
-- [ ] POST -> /answer/:id/delete, id of answer
+- [ ] PUT-> /answer/:id, id of answer
+- [ ] DELETE -> /answer/:id, id of answer
 
 
 # Models
@@ -41,13 +41,6 @@
 - [ ] ClassroomId - array
 - [ ] ProfilePic
 - [ ] Questions - array
-
-## Classroom
-
-- [ ] classId
-- [ ] className
-- [ ] teacherID
-- [ ] students - array
 
 ## Question
 

@@ -6,8 +6,6 @@ const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
 
-
-
 // POST /id/answer/show all answers to a question
 router.get('/', async (req, res) => {
     try{
@@ -20,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 // POST /id/answer/update update answer to a question
-router.post('/:id/update', async(req, res) => {
+router.put('/:id', async(req, res) => {
     try {
         const updatedAnswer = await Answer.findByIdAndUpdate({_id: req.params.id},
             {$set: 
@@ -38,7 +36,7 @@ router.post('/:id/update', async(req, res) => {
 })
 
 // POST /id/answer/create delete answer to a question
-router.post('/:id/delete', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         await Answer.findByIdAndDelete({_id: req.params.id})
         res.redirect('/answer')

@@ -55,7 +55,7 @@ router.post('/:id/answer/create', async (req, res) => {
 })
 
 // POST /question/:id/update for specific question
-router.post('/:id/update', async(req, res) => {
+router.put('/:id', async(req, res) => {
     try {
         const updatedQuestion = await Question.findOneAndUpdate({_id: req.params.id}, 
         { $set:
@@ -73,7 +73,7 @@ router.post('/:id/update', async(req, res) => {
 })
 
 // POST /question/:id/delete delete specific question
-router.post('/:id/delete', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     try {
         await Question.findById(req.params.id, (err, question) => {
             console.log("this is question " + question)
