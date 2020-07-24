@@ -35,12 +35,12 @@
 
 ## [ ] Questions
 
-- [ ] GET -> api/v1/questions/ -> Get all questions -> PRIVATE/ADMIN
-- [ ] GET -> api/v1/classroom/:classid/questions/ -> Get all questions in a classroom-> PRIVATE/ADMIN
-- [ ] GET -> api/v1/classroom/:classid/questions/:questionId -> Get a single question in classroom -> PRIVATE/USER
-- [ ] POST -> api/v1/classroom/:classid/questions/ -> post a question in a classroom -> PRIVATE/USER
-- [ ] PUT -> api/v1/classroom/:classid/questions/:questionid -> update a question in a classroom -> PRIVATE/USER
-- [ ] DELETE -> api/v1/classroom/:classid/questions/:questionId -> delete a question in a classroom -> PRIVATE/USER
+- [x] GET -> api/v1/questions/ -> Get all questions -> PRIVATE/ADMIN
+- [x] GET -> api/v1/classroom/:classid/questions/ -> Get all questions in a classroom-> PRIVATE/ADMIN
+- [x] GET -> api/v1/classroom/:classid/questions/:questionId -> Get a single question in classroom -> PRIVATE/USER
+- [x] POST -> api/v1/classroom/:classid/questions/ -> post a question in a classroom -> PRIVATE/USER
+- [x] PUT -> api/v1/classroom/:classid/questions/:questionid -> update a question in a classroom -> PRIVATE/USER
+- [x] DELETE -> api/v1/classroom/:classid/questions/:questionId -> delete a question in a classroom -> PRIVATE/USER
 
 ## [ ] Comment
 
