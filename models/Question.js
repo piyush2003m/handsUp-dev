@@ -17,9 +17,9 @@ const questionSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-	isCorrectAnswer: {
-		type: Boolean,
-		default: false,
+	CorrectAnswer: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User"
 	},
 	askedBy: {
 		type: mongoose.Schema.Types.ObjectId,

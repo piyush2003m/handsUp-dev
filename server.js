@@ -41,6 +41,7 @@ app.use(passport.session());
 // Mounted routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
+app.use('/answer', require('./routes/answer'));
 app.use('/question', require('./routes/question'));
 
 const PORT = process.env.PORT || 5000;

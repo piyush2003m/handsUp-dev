@@ -19,9 +19,15 @@
 ## [ ] Question
 - [ ] GET -> /question -> Get all unanwered questions
 - [ ] POST -> /question/create -> Create a new question
-- [ ] POST -> /question/:id/update -> Update a specific question
-- [ ] POST -> /question/:id/delete -> Delete a particular question
+- [ ] POST -> /question/:id/update -> Update a specific question, id of question
+- [ ] POST -> /question/:id/delete -> Delete a particular question, id of question
 - [ ] GET -> /question/:id -> View a specific question with answers
+
+## [ ] Answer
+- [ ] POST -> /question/:id/answer/create -> Add answer to a specific question, id of question
+- [ ] POST -> /answer/:id/update, id of answer
+- [ ] POST -> /answer/:id/delete, id of answer
+
 
 # Models
 
