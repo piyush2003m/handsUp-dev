@@ -48,13 +48,11 @@ router.get('/:id/answer', async(req, res, next) => {
     }
     catch(err) {
         console.log(err);
-        next(err); 
+		next(err); 
     }
 })
 
-
-
-// POST /question/id/answer/create add answer to a question
+// POST /question/id/answer add answer to a question
 router.post('/:id/answer/', async (req, res, next) => {
 	try {
 		var answer = await Answer.create({
@@ -62,6 +60,7 @@ router.post('/:id/answer/', async (req, res, next) => {
 			answeredBy: ObjectId('5f17acfb2ff9a991dd58f872'),
 		});
 		Question.findById(req.params.id, (err, question) => {
+            question.answers = question.answers || []
 			question.answers.push(answer._id);
 			question.save(async (err, answeredQuestion) => {
 				const populatedQuestion = await answeredQuestion.populate('answers');
@@ -151,9 +150,12 @@ router.delete('/:id', async (req, res) => {
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {
 	try {
-		const question = await Question.findById(req.params.id).populate(
-			'askedBy answers',
-		);
+		const question = await Question.findById(req.params.id).populate({
+            path : 'answers',
+            populate : {
+                path : 'answeredBy'
+            }
+        })
 		res.render('question', { question });
 	} catch (err) {
 		console.log(err);
