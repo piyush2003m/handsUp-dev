@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
 	try {
 		const foundQuestion = await Question.find({});
 		console.log(foundQuestion);
-		res.render('index', { foundQuestion });
+		res.render('question', { question: foundQuestion });
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -73,35 +73,21 @@ router.post('/:id/answer/', async (req, res, next) => {
 	}
 });
 
-// router.get('/:id', async (req,res)=> {
-//   var question = await Question.findById(req.params.id, async(err, question) => {
-// 	await question.populate({
-// 		path: 'answers',
-// 		populate: {
-// 			path: 'answerdBy',
-// 		}
-// 	}).execPopulate((err, question) => {
-// 		console.log(question)
-// 		res.render('specificQuestion', {question: question})
-// 	})
-//   }) 
-// })
-
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {
-    try {
-        const question = await Question.findById(req.params.id).populate({
+	try {
+		const question = await Question.findById(req.params.id).populate({
             path : 'answers',
             populate : {
                 path : 'answeredBy'
             }
         })
-        console.log(question);
-        res.render('specificQuestion', { question: question });
-    } catch (err) {
-        console.log(err);
-        next(err);
-    }
+		res.render('specificQuestion', { question });
+		console.log(question)
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
 });
 
 
@@ -147,20 +133,5 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
-// GET /question/:id for specific question
-router.get('/:id', async (req, res) => {
-	try {
-		const question = await Question.findById(req.params.id).populate({
-            path : 'answers',
-            populate : {
-                path : 'answeredBy'
-            }
-        })
-		res.render('question', { question });
-	} catch (err) {
-		console.log(err);
-		next(err);
-	}
-});
 
 module.exports = router;
