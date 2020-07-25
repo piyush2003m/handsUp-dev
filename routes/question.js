@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
 	try {
 		const foundQuestion = await Question.find({});
 		console.log(foundQuestion);
-		res.render('question', { foundQuestion });
+		res.render('index', { foundQuestion });
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -23,7 +23,7 @@ router.get('/create', (req, res, next) => {
 	res.render('newQuestion');
 });
 
-// POST /question/create
+// POST /question/
 router.post('/', async (req, res, next) => {
 	console.log(req.body);
 	try {
@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // POST /question/id/answer/create add answer to a question
-router.post('/:id/answer/create', async (req, res, next) => {
+router.post('/:id/answer/', async (req, res, next) => {
 	try {
 		var answer = await Answer.create({
 			text: req.body.text,
@@ -108,7 +108,7 @@ router.get('/:id', async (req, res) => {
 		const question = await Question.findById(req.params.id).populate(
 			'askedBy answers',
 		);
-		res.json(question);
+		res.render('question', { question });
 	} catch (err) {
 		console.log(err);
 		next(err);
