@@ -132,8 +132,6 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
-<<<<<<< HEAD
-=======
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {
 	try {
@@ -149,6 +147,5 @@ router.get('/:id', async (req, res) => {
 		next(err);
 	}
 });
->>>>>>> 3f71f2bb658435e5c859ebcbd479cae27037c649
 
 module.exports = router;
