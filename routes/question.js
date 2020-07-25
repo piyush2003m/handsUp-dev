@@ -18,15 +18,9 @@ router.get('/', async (req, res, next) => {
 	}
 });
 
-<<<<<<< HEAD
-
-router.get("/create", (req, res) => {
-  res.render("newQuestion");
-=======
 // Create question view route
 router.get('/create', (req, res, next) => {
 	res.render('newQuestion');
->>>>>>> 661655b2ad1d93df4a04685e2e54cfbdcd49ae42
 });
 
 // POST /question/
@@ -45,6 +39,20 @@ router.post('/', async (req, res, next) => {
 		next(err);
 	}
 });
+
+// GET /question/id/answer
+router.get('/:id/answer', async(req, res, next) => {
+    try {
+        var question = await Question.findById(req.params.id)
+        res.render('newAnswer', {question: question})
+    }
+    catch(err) {
+        console.log(err);
+        next(err); 
+    }
+})
+
+
 
 // POST /question/id/answer/create add answer to a question
 router.post('/:id/answer/', async (req, res, next) => {
@@ -66,6 +74,36 @@ router.post('/:id/answer/', async (req, res, next) => {
 	}
 });
 
+// router.get('/:id', async (req,res)=> {
+//   var question = await Question.findById(req.params.id, async(err, question) => {
+// 	await question.populate({
+// 		path: 'answers',
+// 		populate: {
+// 			path: 'answerdBy',
+// 		}
+// 	}).execPopulate((err, question) => {
+// 		console.log(question)
+// 		res.render('specificQuestion', {question: question})
+// 	})
+//   }) 
+// })
+
+// GET /question/:id for specific question
+router.get('/:id', async (req, res) => {
+    try {
+        const question = await Question.findById(req.params.id).populate({
+            path : 'answers',
+            populate : {
+                path : 'answeredBy'
+            }
+        })
+        console.log(question);
+        res.render('specificQuestion', { question: question });
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+});
 
 
 // POST /question/:id/update for specific question
