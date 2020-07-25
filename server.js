@@ -16,13 +16,14 @@ dotenv.config({ path: './config/config.env' });
 require('./config/passport')(passport);
 
 // body-parser middleware
-app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
 const connectDB = require('./config/db');
 connectDB();
 
 app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true }));
 
 // session
 app.use(

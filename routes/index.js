@@ -5,12 +5,7 @@ const {ensureAuth} = require('../middleware/auth')
 
 // GET to /
 router.get('/', (req, res, next) => {
-	if (req.user) {
-		res.json({user: req.user})
-	}
-	else {
-	res.status(200).json({ data: 'success' });
-	}
+	res.render('index')
 });
 
 const sampleObj = {

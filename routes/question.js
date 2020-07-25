@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/Question');
 const { ensureAuth } = require('../middleware/auth');
 const Question = require('../models/Question');
-const Solved = require('../models/Solved');
 const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
 
@@ -18,8 +17,13 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/create', (req, res) => {
+    res.render('newQuestion')
+})
+
 // POST /question/create
 router.post('/create', async (req, res) => {
+    console.log(req.body);
     try {  
     const question = await Question.create({
         topic: req.body.topic,
