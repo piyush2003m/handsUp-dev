@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const Question = require('../models/Question');
 const { ensureAuth } = require('../middleware/auth');
+const Answer = require('../models/Answer');
 
 // GET to /
 router.get('/', (req, res, next) => {
@@ -39,5 +40,26 @@ router.get('/demo', async (req, res, next) => {
 		next(err);
 	}
 });
+
+router.get('/profile', async(req, res, next) => {
+	try {
+		const myQuestions = await Question.find({askedBy: req.user.id})
+		const myAnswers = await Answer.find({answeredBy: req.user.id})
+		console.log(myQuestions)
+		console.log(myAnswers)
+	} catch(err) {
+		console.log(err);
+		next(err);
+	}
+})
+
+router.get('/profle', async(req, res, next) => {
+	try {
+
+	} catch(err) {
+		console.log(err);
+		next(err);
+	}
+})
 
 module.exports = router;

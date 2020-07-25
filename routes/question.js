@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
 	try {
 		const foundQuestion = await Question.find({});
 		console.log(foundQuestion);
-		res.render('index', { foundQuestion });
+		res.render('question', { question: foundQuestion });
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -31,9 +31,9 @@ router.post('/', async (req, res, next) => {
 			topic: req.body.topic,
 			subject: req.body.subject,
 			text: req.body.text,
-			askedBy: ObjectId('5f17acfb2ff9a991dd58f872'),
+			askedBy: req.user.id,
 		});
-		res.json({ question });
+		res.redirect('/question');
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -41,26 +41,25 @@ router.post('/', async (req, res, next) => {
 });
 
 // GET /question/id/answer
-router.get('/:id/answer', async(req, res, next) => {
-    try {
-        var question = await Question.findById(req.params.id)
-        res.render('newAnswer', {question: question})
-    }
-    catch(err) {
-        console.log(err);
-		next(err); 
-    }
-})
+router.get('/:id/answer', async (req, res, next) => {
+	try {
+		var question = await Question.findById(req.params.id);
+		res.render('newAnswer', { question: question });
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+});
 
 // POST /question/id/answer add answer to a question
 router.post('/:id/answer/', async (req, res, next) => {
 	try {
 		var answer = await Answer.create({
 			text: req.body.text,
-			answeredBy: ObjectId('5f17acfb2ff9a991dd58f872'),
+			answeredBy: req.user.id,
 		});
 		Question.findById(req.params.id, (err, question) => {
-            question.answers = question.answers || []
+			question.answers = question.answers || [];
 			question.answers.push(answer._id);
 			question.save(async (err, answeredQuestion) => {
 				const populatedQuestion = await answeredQuestion.populate('answers');
@@ -72,6 +71,24 @@ router.post('/:id/answer/', async (req, res, next) => {
 		next(err);
 	}
 });
+
+// GET /question/:id for specific question
+router.get('/:id', async (req, res) => {
+	try {
+		const question = await Question.findById(req.params.id).populate({
+            path : 'answers',
+            populate : {
+                path : 'answeredBy'
+            }
+        })
+		res.render('specificQuestion', { question });
+		console.log(question)
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+});
+
 
 // POST /question/:id/update for specific question
 router.put('/:id', async (req, res, next) => {
@@ -119,11 +136,11 @@ router.delete('/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	try {
 		const question = await Question.findById(req.params.id).populate({
-            path : 'answers',
-            populate : {
-                path : 'answeredBy'
-            }
-        })
+			path: 'answers',
+			populate: {
+				path: 'answeredBy',
+			},
+		});
 		res.render('question', { question });
 	} catch (err) {
 		console.log(err);

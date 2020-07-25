@@ -1,0 +1,30 @@
+<%- include ('partials/header.ejs') %>
+
+<div class="form-group" style="align-self: flex-end; width: 30%;">
+    <button class="btn btn-lg btn-default btn-block btn-primary">
+        Want To Add An Answer?
+      </button>
+</div>
+<div class="container">
+    <div style="width: 60%; margin: 25px auto">
+        <h2 style="padding-top: 10px; padding-left: 60px;"><%- question.topic%></h2>
+        <h6 style="text-align: end; margin-right: 30px;"><%= question.createdAt%></h6>
+        <hr style="border-top: 1px solid; margin-left: 30.0px; margin-right: 30.0px; opacity: 0.6;"/>
+        <br><br><br>
+        <div style = "height: 100px; width: 100; border: 2px solid; border-radius: 10px;" >
+        </div>
+        <br><br><br><br><br><br>
+        <div class="row" style="display:flex; flex-wrap: wrap;">
+            <% question.answers.forEach(function (answer) {%>
+                <div style="border: 1px solid; border-radius: 10px; height: 70; width: 100; align-self: center;">
+                    <div style="margin-left: 1.5em; margin-right: 3em; margin-top: 1.5em">
+                        <p>Answer: <%= question.answers%></p>
+                    </div>
+                </div>
+                <br><br><br>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<%- include ('partials/footer.ejs') %>
+

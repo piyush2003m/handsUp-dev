@@ -16,7 +16,6 @@ dotenv.config({ path: "./config/config.env" });
 require("./config/passport")(passport);
 
 // body-parser middleware
-app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
@@ -25,7 +24,7 @@ connectDB();
 
 app.use(morgan("dev"));
 
-// session
+// // session
 app.use(
   session({
     secret: "oauth is weird",
@@ -35,9 +34,16 @@ app.use(
   })
 );
 
-// passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
+
+// Set global var
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+})
+
+app.use(express.static(__dirname + "/public"));
 
 // Mounted routes
 app.use("/", require("./routes/index"));

@@ -1,4 +1,59 @@
 <%- include('partials/header.ejs') %>
+<<<<<<< HEAD
+<script>
+  // function addQuestions() {
+  //   for (var i = 1; i <= 10; i++) {
+  //     var tag = document.createElement("div");
+  //     var title = document.createElement("h3");
+  //     title.classList.add("goleft");
+  //     var titleText = document.createTextNode("Question No:" + i);
+  //     title.appendChild(titleText);
+  //     var user = document.createElement("h6");
+  //     var userName = document.createTextNode("User No " + i);
+  //     user.appendChild(userName);
+  //     var text = document.createTextNode("How to Write " + i + " In HTMl??");
+  //     tag.appendChild(title);
+  //     tag.appendChild(text);
+  //     tag.appendChild(user);
+  //     tag.classList.add("question");
+  //     var element = document.getElementById("new");
+  //     element.appendChild(tag);
+  //     element.appendChild(document.createElement("br"));
+  //     console.log("added");
+  //   }
+  // }
+</script>
+<style>
+  .question {
+    margin-top: 30px;
+    border: 1px solid black;
+    padding-top: 25px;
+    padding-bottom: 55px;
+    padding-left: 25px;
+    border-radius: 5px;
+    height: 75px;
+    width: 75%;
+  }
+  .goleft {
+    float: left;
+  }
+  .goright {
+    float: right;
+  }
+</style>
+<body onload="addQuestions()">
+  <center>
+    <div id="new"></div>
+    <% question.forEach(function(question){ %>
+      <div class="question">
+        <p>The Question is :- <%= question.text %></p>
+      </div>
+    <% }) %>
+  </center>
+</body>
+=======
+
 <h1><%= question.text %></h1>
 
+>>>>>>> 3f71f2bb658435e5c859ebcbd479cae27037c649
 <%- include('partials/footer.ejs') %>
