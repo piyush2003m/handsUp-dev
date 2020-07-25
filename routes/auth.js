@@ -2,8 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+// View Route
+router.get('/signin', (req, res, next) => {
+	res.render('signin');
+});
+
 // POST /auth/google
-router.get(
+router.post(
 	'/google',
 	passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
