@@ -13,7 +13,7 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 // passport config
-require("./config/passport")(passport);
+// require("./config/passport")(passport);
 
 // body-parser middleware
 app.use(express.static(__dirname + "/public"));
@@ -25,19 +25,19 @@ connectDB();
 
 app.use(morgan("dev"));
 
-// session
-app.use(
-  session({
-    secret: "oauth is weird",
-    resave: false,
-    saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
-);
+// // session
+// app.use(
+//   session({
+//     secret: "oauth is weird",
+//     resave: false,
+//     saveUninitialized: true,
+//     store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//   })
+// );
 
 // passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Mounted routes
 app.use("/", require("./routes/index"));

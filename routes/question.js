@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.get("/create", (req, res) => {
   res.render("newQuestion");
 });
@@ -62,6 +63,13 @@ router.post("/:id/answer/create", async (req, res) => {
     next(err);
   }
 });
+
+router.get('/:id', async (req,res)=> {
+  var question = await Question.findById(req.params.id, async(err, question) => {
+    const populatedQuestion = await question.populate("answers")
+    res.render('specificQuestion', {question: populatedQuestion})
+  }) 
+})
 
 // POST /question/:id/update for specific question
 router.put("/:id", async (req, res) => {
