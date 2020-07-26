@@ -22,7 +22,9 @@
     <div id="new"></div>
     <% question.forEach(function(question){ %>
       <div class="question">
-        <p>The Question is :- <%= question.text %></p>
+        <a href = "/question/<%=question._id%>">
+          <p>The Question is :- <%= question.text %></p>
+        </a>
       </div>
       <form class="vote-up" data-id="<%=question._id%>">
         <button type="submit">Vote Up</button>
