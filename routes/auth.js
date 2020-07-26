@@ -8,7 +8,7 @@ router.get('/signin', (req, res, next) => {
 });
 
 // POST /auth/google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.post('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // POST /auth/google/callback
 router.get('/google/callback', passport.authenticate('google', {failureRedirect: '/signin'}), (req, res) => {

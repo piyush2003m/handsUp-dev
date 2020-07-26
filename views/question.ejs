@@ -1,28 +1,4 @@
 <%- include('partials/header.ejs') %>
-<<<<<<< HEAD
-<script>
-  // function addQuestions() {
-  //   for (var i = 1; i <= 10; i++) {
-  //     var tag = document.createElement("div");
-  //     var title = document.createElement("h3");
-  //     title.classList.add("goleft");
-  //     var titleText = document.createTextNode("Question No:" + i);
-  //     title.appendChild(titleText);
-  //     var user = document.createElement("h6");
-  //     var userName = document.createTextNode("User No " + i);
-  //     user.appendChild(userName);
-  //     var text = document.createTextNode("How to Write " + i + " In HTMl??");
-  //     tag.appendChild(title);
-  //     tag.appendChild(text);
-  //     tag.appendChild(user);
-  //     tag.classList.add("question");
-  //     var element = document.getElementById("new");
-  //     element.appendChild(tag);
-  //     element.appendChild(document.createElement("br"));
-  //     console.log("added");
-  //   }
-  // }
-</script>
 <style>
   .question {
     margin-top: 30px;
@@ -48,12 +24,16 @@
       <div class="question">
         <p>The Question is :- <%= question.text %></p>
       </div>
+      <form class="vote-up" data-id="<%=question._id%>">
+        <button type="submit">Vote Up</button>
+      </form>
+      <form class="vote-down" data-id="<%=question._id%>">
+        <button type="submit">Vote Down</button>
+      </form>
     <% }) %>
   </center>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script rel="script" src="/js/posts.js"></script>
 </body>
-=======
-
-<h1><%= question.text %></h1>
-
->>>>>>> 3f71f2bb658435e5c859ebcbd479cae27037c649
 <%- include('partials/footer.ejs') %>
