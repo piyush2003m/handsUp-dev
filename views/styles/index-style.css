@@ -1,0 +1,207 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper-one {
+	display: flex;
+	height: 100vh;
+	align-items: stretch;
+}
+
+.wrapper-one > .left-sidebar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-basis: 68%;
+	padding: 5em;
+	height: auto;
+	align-items: flex-start;
+}
+
+h2.title {
+	background-color: rgba(123, 237, 159, 0.4);
+	padding: 5px 20px;
+	line-height: 10px;
+}
+
+.fa-caret-up,
+.fa-check-double {
+	color: rgba(123, 237, 159, 01);
+}
+
+.wrapper-one > .right-sidebar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	flex-basis: 32%;
+	padding: 5em;
+	align-items: center;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+.left-sidebar > .header-one {
+	margin-bottom: 0em;
+	width: 60%;
+}
+
+.header-one > h1 {
+	font-size: 4.5em;
+	letter-spacing: -1px;
+}
+
+.header-one h3 {
+	font-size: 1em;
+	line-height: 1.5em;
+}
+
+.right-sidebar > .sign-up > form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.sign-up form input {
+	width: 60%;
+	padding: 1em;
+	margin: 0.5em;
+}
+
+.btn-explore > a {
+	text-decoration: none;
+	color: black;
+}
+
+.sign-up h2 {
+	font-size: 2.5em;
+}
+
+.btn {
+	padding: 1em 4em;
+	margin: 1em;
+	border: 1.3px solid #2f3542;
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 40px;
+	box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.21);
+}
+
+button.btn-signUp {
+	padding: 1rem 2rem;
+}
+
+i.fa-google {
+	padding-right: 5px;
+}
+
+.btn:hover {
+	background-color: rgba(123, 237, 159, 0.4);
+	transition: background-color 0.2s;
+}
+
+/* Section two */
+
+.wrapper-two {
+	display: flex;
+}
+
+.wrapper-two > .section-two-body {
+	display: flex;
+	flex-direction: column;
+	margin: 5em;
+	flex-basis: 60%;
+	align-items: center;
+}
+
+.wrapper-two > .right-bar {
+	display: flex;
+	margin: 1em;
+	justify-content: center;
+	align-self: center;
+	flex-basis: 40%;
+	padding: 1em;
+}
+
+.comment > i {
+	font-size: 300px;
+}
+
+.section-two-body > .feature-two {
+	margin-top: 2em;
+}
+
+.feature-two > .votes,
+.correct {
+	display: flex;
+	align-items: center;
+	padding: 1em;
+}
+
+.text-correct,
+.text-votes {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.main-header-two h2 {
+	font-size: 2em;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.main-header-two p {
+	font-size: 1em;
+}
+
+.feature-two i {
+	margin-right: 1em;
+}
+
+.feature-two small {
+	font-size: 1em;
+}
+
+.feature-two p {
+	font-size: 1.5em;
+	padding-bottom: 0;
+	margin-bottom: 0.5em;
+}
+
+/* Footer */
+
+footer {
+	display: flex;
+	height: 2em;
+	background-color: rgba(0, 0, 0, 0.04);
+	padding: 3em;
+}
+
+footer .right {
+	flex-basis: 50%;
+}
+
+footer .left {
+	flex-basis: 50%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+footer a {
+	text-decoration: none;
+	font-size: 1em;
+	color: black;
+}
+
+footer .right {
+	font-size: 1.5em;
+}
+
+/* Colors */
+
+span.qa {
+	background-color: rgba(123, 237, 159, 0.7);
+	padding: 5px;
+}

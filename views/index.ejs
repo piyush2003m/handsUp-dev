@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vol One</title>
+
+    <script src="https://kit.fontawesome.com/a39a7289eb.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./styles/index-style.css" />
+
+    <style>
+        body {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper-one {
+	display: flex;
+	height: 100vh;
+	align-items: stretch;
+}
+
+.wrapper-one > .left-sidebar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-basis: 68%;
+	padding: 5em;
+	height: auto;
+	align-items: flex-start;
+}
+
+h2.title {
+	background-color: rgba(123, 237, 159, 0.4);
+	padding: 5px 20px;
+	line-height: 10px;
+}
+
+.fa-caret-up,
+.fa-check-double {
+	color: rgba(123, 237, 159, 01);
+}
+
+.wrapper-one > .right-sidebar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	flex-basis: 32%;
+	padding: 5em;
+	align-items: center;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+.left-sidebar > .header-one {
+	margin-bottom: 0em;
+	width: 60%;
+}
+
+.header-one > h1 {
+	font-size: 4.5em;
+	letter-spacing: -1px;
+}
+
+.header-one h3 {
+	font-size: 1em;
+	line-height: 1.5em;
+}
+
+.right-sidebar > .sign-up > form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.sign-up form input {
+	width: 60%;
+	padding: 1em;
+	margin: 0.5em;
+}
+
+.btn-explore > a {
+	text-decoration: none;
+	color: black;
+}
+
+.sign-up h2 {
+	font-size: 2.5em;
+}
+
+.btn {
+	padding: 1em 4em;
+	margin: 1em;
+	border: 1.3px solid #2f3542;
+	background-color: rgba(0, 0, 0, 0);
+	border-radius: 40px;
+	box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.21);
+}
+
+button.btn-signUp {
+	padding: 1rem 2rem;
+}
+
+i.fa-google {
+	padding-right: 5px;
+}
+
+.btn:hover {
+	background-color: rgba(123, 237, 159, 0.4);
+	transition: background-color 0.2s;
+}
+
+/* Section two */
+
+.wrapper-two {
+	display: flex;
+}
+
+.wrapper-two > .section-two-body {
+	display: flex;
+	flex-direction: column;
+	margin: 5em;
+	flex-basis: 60%;
+	align-items: center;
+}
+
+.wrapper-two > .right-bar {
+	display: flex;
+	margin: 1em;
+	justify-content: center;
+	align-self: center;
+	flex-basis: 40%;
+	padding: 1em;
+}
+
+.comment > i {
+	font-size: 300px;
+}
+
+.section-two-body > .feature-two {
+	margin-top: 2em;
+}
+
+.feature-two > .votes,
+.correct {
+	display: flex;
+	align-items: center;
+	padding: 1em;
+}
+
+.text-correct,
+.text-votes {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.main-header-two h2 {
+	font-size: 2em;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.main-header-two p {
+	font-size: 1em;
+}
+
+.feature-two i {
+	margin-right: 1em;
+}
+
+.feature-two small {
+	font-size: 1em;
+}
+
+.feature-two p {
+	font-size: 1.5em;
+	padding-bottom: 0;
+	margin-bottom: 0.5em;
+}
+
+/* Footer */
+
+footer {
+	display: flex;
+	height: 2em;
+	background-color: rgba(0, 0, 0, 0.04);
+	padding: 3em;
+}
+
+footer .right {
+	flex-basis: 50%;
+}
+
+footer .left {
+	flex-basis: 50%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+footer a {
+	text-decoration: none;
+	font-size: 1em;
+	color: black;
+}
+
+footer .right {
+	font-size: 1.5em;
+}
+
+/* Colors */
+
+span.qa {
+	background-color: rgba(123, 237, 159, 0.7);
+	padding: 5px;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Body Wrapper -->
+    <div class="container">
+        <!-- Section One Wrapper -->
+        <section class="wrapper-one">
+            <div class="left-sidebar">
+                <h2 class="title">Hands Up</h2>
+
+                <div class="header-one">
+                    <h1>
+                        Q & A <br />
+                        without <br />
+                        <span class="qa">Distractions</span>
+                    </h1>
+                    <h3>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                        reprehenderit <span class="qa">cumque doloribus deleniti similique veritatis
+                            necessitatibus, nostrum sit voluptas</span> aperiam.</h3>
+                    </h3>
+                </div>
+
+                <div class="btn-section-one">
+                    <button class="btn btn-explore"><a href='#wrap2'>Explore</a> </button>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="sign-up">
+                    <h2>Join our <span class="qa">community</span></h2>
+                    <form method='POST' action="/auth/google">
+
+                        <button class="btn btn-signUp"><i class="fab fa-google"></i> Sign up with Google</button>
+
+                        <small>Lorem ipsum dolor sit amet consectetur adipisicing.</small>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrapper-two" id='wrap2'>
+            <div class="section-two-body">
+                <div class="main-header-two">
+                    <h2>Lorem ipsum <span class="qa">dolor sit amet.</span></h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+                        soluta?
+                    </p>
+                </div>
+                <div class="feature-two">
+                    <div class="votes">
+                        <i class="fas fa-caret-up fa-5x"></i>
+                        <div class="text-votes">
+                            <p> Lorem ipsum <span class='qa'>dolor sit</span> amet</span>.</p>
+                            <small>Lorem, ipsum dolor sit amet consectetur adipisicing
+                                elit.</small>
+                        </div>
+                    </div>
+                    <div class="correct">
+                        <i class="fas fa-check-double fa-4x"></i>
+                        <div class="text-correct">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                            <small>Lorem, <span class="qa"> ipsum dolor sit amet</span> consectetur adipisicing
+                                elit.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-bar">
+                <div class="comment">
+                    <i class="fas fa-comments fa-10x"></i>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="right">
+            By Team FS
+        </div>
+
+        <div class="left">
+            <a href="#">legal</a>
+            <a href="#">privacy policy</a>
+            <a href="#">contact us</a>
+            <a href="#">feedback</a>
+            <a href="#">about us</a>
+        </div>
+    </footer>
+</body>
+
+</html>
