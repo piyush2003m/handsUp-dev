@@ -27,6 +27,9 @@ const questionSchema = new mongoose.Schema({
     images: [
         {type: String} 
     ],
+    tags: [
+        {type: String} 
+    ],
     createdAt: {
 		type: Date,
 		default: Date.now,
