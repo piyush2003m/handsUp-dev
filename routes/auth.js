@@ -21,6 +21,13 @@ router.get(
 		res.redirect('/question');
 	},
 );
+router.get(
+	'/google/callback',
+	passport.authenticate('google', { failureRedirect: '/signin' }),
+	(req, res) => {
+		res.redirect('/question');
+	},
+);
 
 // Logout /auth/logout
 router.get('/logout', (req, res) => {

@@ -9,7 +9,7 @@ var ObjectId = require('mongodb').ObjectID;
 // GET /question display all questions
 router.get('/', async (req, res, next) => {
 	try {
-		const foundQuestion = await Question.find({});
+		const foundQuestion = await Question.find({"correctAnswer" : null});
 		console.log(foundQuestion);
 		res.render('question', { question: foundQuestion });
 	} catch (err) {
@@ -62,8 +62,7 @@ router.post('/:id/answer/', async (req, res, next) => {
 			question.answers = question.answers || [];
 			question.answers.push(answer._id);
 			question.save(async (err, answeredQuestion) => {
-				const populatedQuestion = await answeredQuestion.populate('answers');
-				res.json({ populatedQuestion });
+				res.redirect('/question')
 			});
 		});
 	} catch (err) {
@@ -71,6 +70,24 @@ router.post('/:id/answer/', async (req, res, next) => {
 		next(err);
 	}
 });
+
+router.post('/:questionid/:answerid/correct', async(req, res) => {
+	try {
+		const question = await Question.findById(req.params.questionid)
+		const answer = await Answer.findById(req.params.answerid)
+		if (question.askedBy = req.user.id) {
+			question.correctAnswer = answer._id;
+			question.save();
+			res.redirect('/question')
+		}
+		else {
+			res.redirect('/question')
+		}
+	} catch(err) {
+		console.log(err);
+		next(err);	
+	}
+})
 
 // GET /question/:id for specific question
 router.get('/:id', async (req, res) => {
