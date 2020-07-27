@@ -17,14 +17,14 @@ router.get('/', async (req, res, next) => {
 			if (foundQuestion.length < 1) {
 				noMatch = "Sorry no matching questions were found"
 			}
-			res.render('ques', { question: foundQuestion, noMatch: noMatch });
+			res.render('ques', { question: foundQuestion, noMatch: noMatch, currentUser: req.user });
 		}
 		else {
 			const foundQuestion = await Question.find({"correctAnswer" : null})
 			// .populate({
 			// 	path : 'askedBy',
 			// });
-			res.render('ques', { question: foundQuestion });
+			res.render('ques', { question: foundQuestion, currentUser: req.user });
 		}
 	} catch (err) {
 		console.log(err);
@@ -34,7 +34,7 @@ router.get('/', async (req, res, next) => {
 
 // Create question view route
 router.get('/create', ensureAuth, (req, res, next) => {
-	res.render('newQuestion');
+	res.render('newQuestion', {currentUser: req.user});
 });
 
 // POST /question/
@@ -68,7 +68,7 @@ router.post('/', ensureAuth, async (req, res, next) => {
 router.get('/:id/answer', ensureAuth, async (req, res, next) => {
 	try {
 		var question = await Question.findById(req.params.id);
-		res.render('newAnswer', { question: question });
+		res.render('newAnswer', { question: question, currentUser: req.user });
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -138,7 +138,7 @@ router.get('/:id', ensureAuth, async (req, res) => {
                 path : 'answeredBy'
             }
         })
-		res.render('specificQuestion', { question });
+		res.render('specificQuestion', { question: question, currentUser: req.user });
 		console.log(question)
 	} catch (err) {
 		console.log(err);
@@ -198,7 +198,7 @@ router.get('/:id', ensureAuth, async (req, res) => {
 				path: 'answeredBy',
 			},
 		});
-		res.render('question', { question });
+		res.render('question', { question, currentUser: req.user });
 	} catch (err) {
 		console.log(err);
 		next(err);
