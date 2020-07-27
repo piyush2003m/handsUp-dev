@@ -17,11 +17,14 @@ router.get('/', async (req, res, next) => {
 			if (foundQuestion.length < 1) {
 				noMatch = "Sorry no matching questions were found"
 			}
-			res.render('question', { question: foundQuestion, noMatch: noMatch });
+			res.render('ques', { question: foundQuestion, noMatch: noMatch });
 		}
 		else {
-			const foundQuestion = await Question.find({"correctAnswer" : null});
-			res.render('question', { question: foundQuestion });
+			const foundQuestion = await Question.find({"correctAnswer" : null})
+			// .populate({
+			// 	path : 'askedBy',
+			// });
+			res.render('ques', { question: foundQuestion });
 		}
 	} catch (err) {
 		console.log(err);
@@ -36,13 +39,18 @@ router.get('/create', ensureAuth, (req, res, next) => {
 
 // POST /question/
 router.post('/', ensureAuth, async (req, res, next) => {
-	console.log(req.body);
 	try {
+		const MCEtext = sanitizeHtml(req.body.text, {
+			allowedTags: [],
+			allowedAttributes: {}
+		});
+		const tags = await req.body.tags.split(',');
 		const question = await Question.create({
 			topic: req.body.topic,
 			subject: req.body.subject,
-			text: req.body.text,
+			text: MCEtext,
 			askedBy: req.user.id,
+			tags: tags
 		});
 		await User.findOneAndUpdate(
 			{ _id: req.user.id },

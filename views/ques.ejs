@@ -135,37 +135,38 @@
 
 			<hr style="width: 50%; margin: 30px 0; opacity: 0.4;" />
 
-			{/*
-			<!-- Question Start -->
-			*/}
+		
+			<% question.forEach((question) => { %>
 			<div class="Question">
 				<div class="questions-wrapper">
 					<div class="question-container">
 						<div class="info">
-							<h3 class="Q">Replace negative values in pandas Series</h3>
+							<a href = "/question/<%=question._id%>">
+							<h3 class="Q"> <%= question.topic %> </h3>
+							</a>
 							<div class="tag-list">
-								<div class="tag">memory</div>
-								<div class="tag">Pub</div>
-								<div class="tag">qsub</div>
+								<% question.tags.forEach((tag) => { %>
+								<div class="tag"> <%= tag %> </div>
+								<% }) %>
 							</div>
 
 							<div class="publisher">
 								<p class="">
 									<i class="far fa-question-circle"></i> asked 12 min ago
-									<span class="asker"> clusterfuc200s</span>
+									<span class="asker"> <%= question.askedBy.displayName %> </span>
 								</p>
 							</div>
 						</div>
 
 						<div class="stats">
 							<div class="votes stat">
-								<p>1</p>
+								<p> <%= question.voteScore %> </p>
 								<p>votes</p>
 								<i class="far fa-thumbs-up"></i>
 							</div>
 
 							<div class="stat ans">
-								<p>4</p>
+								<p> <%= question.answers.length %> </p>
 								<p>answer</p>
 								<i class="far fa-comment"></i>
 							</div>
@@ -180,11 +181,9 @@
 
 					<hr style="width: 70%; margin: 30px auto; opacity: 0.4;" />
 				</div>
-				{/*
-				<!-- Question End -->
-				*/}
+			<% }) %>
 			</div>
 		</div>
 	</body>
 </html>
-;
+
