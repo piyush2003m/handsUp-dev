@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const { ensureAuth } = require('../middleware/auth');
+const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
-var sanitizeHtml = require('sanitize-html');
+const sanitizeHtml = require('sanitize-html');
 
 // GET /question display all questions
 router.get('/', async (req, res, next) => {
 	try {
 		if (req.query.search) {
 			const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-			const foundQuestion = await Question.find({text: regex});
+			const foundQuestion = await Question.find({ $or: [ {text: regex}, {topic: regex}  ] });
 			var noMatch;
 			if (foundQuestion.length < 1) {
 				noMatch = "Sorry no matching questions were found"
@@ -30,12 +30,12 @@ router.get('/', async (req, res, next) => {
 });
 
 // Create question view route
-router.get('/create', (req, res, next) => {
+router.get('/create', ensureAuth, (req, res, next) => {
 	res.render('newQuestion');
 });
 
 // POST /question/
-router.post('/', async (req, res, next) => {
+router.post('/', ensureAuth, async (req, res, next) => {
 	console.log(req.body);
 	try {
 		const question = await Question.create({
@@ -57,7 +57,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // GET /question/id/answer
-router.get('/:id/answer', async (req, res, next) => {
+router.get('/:id/answer', ensureAuth, async (req, res, next) => {
 	try {
 		var question = await Question.findById(req.params.id);
 		res.render('newAnswer', { question: question });
@@ -68,7 +68,7 @@ router.get('/:id/answer', async (req, res, next) => {
 });
 
 // POST /question/id/answer add answer to a question
-router.post('/:id/answer/', async (req, res, next) => {
+router.post('/:id/answer/', ensureAuth, async (req, res, next) => {
 	try {
 		const MCEtext = sanitizeHtml(req.body.text, {
 			allowedTags: [],
@@ -98,7 +98,7 @@ router.post('/:id/answer/', async (req, res, next) => {
 });
 
 // mark answer as correct
-router.post('/:questionid/:answerid/correct', async(req, res) => {
+router.post('/:questionid/:answerid/correct', ensureAuth, async(req, res) => {
 	try {
 		const question = await Question.findById(req.params.questionid)
 		const answer = await Answer.findById(req.params.answerid)
@@ -122,7 +122,7 @@ router.post('/:questionid/:answerid/correct', async(req, res) => {
 })
 
 // GET /question/:id for specific question
-router.get('/:id', async (req, res) => {
+router.get('/:id', ensureAuth, async (req, res) => {
 	try {
 		const question = await Question.findById(req.params.id).populate({
             path : 'answers',
@@ -140,7 +140,7 @@ router.get('/:id', async (req, res) => {
 
 
 // POST /question/:id/update for specific question
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', ensureAuth, async (req, res, next) => {
 	try {
 		const updatedQuestion = await Question.findOneAndUpdate(
 			{ _id: req.params.id },
@@ -160,7 +160,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // POST /question/:id/delete delete specific question
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', ensureAuth, async (req, res) => {
 	try {
 		await Question.findById(
 			req.params.id,
@@ -182,7 +182,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // GET /question/:id for specific question
-router.get('/:id', async (req, res) => {
+router.get('/:id', ensureAuth, async (req, res) => {
 	try {
 		const question = await Question.findById(req.params.id).populate({
 			path: 'answers',

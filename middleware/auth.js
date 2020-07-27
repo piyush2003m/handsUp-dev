@@ -9,7 +9,7 @@ module.exports = {
     },
     ensureGuest: function(req, res, next) {
         if (req.isAuthenticated) {
-            res.json({ user: req.user })
+            res.redirect('/question')
         }
         else {
             return next()

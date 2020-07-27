@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const { ensureAuth } = require('../middleware/auth');
 const router = express.Router();
 
 // View Route
@@ -7,20 +8,11 @@ router.get('/signin', (req, res, next) => {
 	res.render('signin');
 });
 
-// POST /auth/google
-router.post(
+router.get(
 	'/google',
 	passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
 
-// POST /auth/google/callback
-router.get(
-	'/google/callback',
-	passport.authenticate('google', { failureRedirect: '/signin' }),
-	(req, res) => {
-		res.redirect('/question');
-	},
-);
 router.get(
 	'/google/callback',
 	passport.authenticate('google', { failureRedirect: '/signin' }),

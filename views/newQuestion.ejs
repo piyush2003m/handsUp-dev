@@ -36,9 +36,15 @@
 					<button class="btn btn-lg btn-default btn-block btn-primary">
 						Submit!
 					</button>
+					<script>
+						tinymce.init({
+						  selector: '#text'
+						});
+					</script>
 				</div>
 			</form>
 			<a href="/question">Go Back</a>
 		</div>
 	</div>
 </div>
+<%- include('partials/footer.ejs') %>
