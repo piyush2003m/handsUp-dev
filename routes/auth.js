@@ -12,7 +12,7 @@ router.post('/google', passport.authenticate('google', { scope: ['profile', 'ema
 
 // POST /auth/google/callback
 router.get('/google/callback', passport.authenticate('google', {failureRedirect: '/signin'}), (req, res) => {
-	res.json({ user: req.user });
+	res.redirect('/question')
 });
 
 // Logout /auth/logout

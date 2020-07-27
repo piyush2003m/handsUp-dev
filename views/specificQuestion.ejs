@@ -22,6 +22,9 @@
                         <p>votes: <%=answer.votes%></p>
                         <p>Answered By: <%=answer.answeredBy.displayName%></p>
                         <p>Email: <%=answer.answeredBy.email%></p>
+                        <form method="POST" action="/question/<%=question._id%>/<%=answer._id%>/correct">
+                            <button class="btn btn-lg btn-default btn-block btn-primary">Correct</button>
+                        </form>
                     </div>
                 </div>
             <%})%>
