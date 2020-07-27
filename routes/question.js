@@ -1,17 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/Question');
+const User = require('../models/User');
 const { ensureAuth } = require('../middleware/auth');
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
+var sanitizeHtml = require('sanitize-html');
 
 // GET /question display all questions
 router.get('/', async (req, res, next) => {
 	try {
-		const foundQuestion = await Question.find({"correctAnswer" : null});
-		console.log(foundQuestion);
-		res.render('question', { question: foundQuestion });
+		if (req.query.search) {
+			const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+			const foundQuestion = await Question.find({text: regex});
+			var noMatch;
+			if (foundQuestion.length < 1) {
+				noMatch = "Sorry no matching questions were found"
+			}
+			res.render('question', { question: foundQuestion, noMatch: noMatch });
+		}
+		else {
+			const foundQuestion = await Question.find({"correctAnswer" : null});
+			res.render('question', { question: foundQuestion });
+		}
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -33,6 +44,11 @@ router.post('/', async (req, res, next) => {
 			text: req.body.text,
 			askedBy: req.user.id,
 		});
+		await User.findOneAndUpdate(
+			{ _id: req.user.id },
+			{ $inc: { points: 10 } },
+			{ new: true },
+		);
 		res.redirect('/question');
 	} catch (err) {
 		console.log(err);
@@ -54,16 +70,26 @@ router.get('/:id/answer', async (req, res, next) => {
 // POST /question/id/answer add answer to a question
 router.post('/:id/answer/', async (req, res, next) => {
 	try {
+		const MCEtext = sanitizeHtml(req.body.text, {
+			allowedTags: [],
+			allowedAttributes: {}
+		});
 		var answer = await Answer.create({
-			text: req.body.text,
+			text: MCEtext,
 			answeredBy: req.user.id,
 		});
 		Question.findById(req.params.id, (err, question) => {
-			question.answers = question.answers || [];
-			question.answers.push(answer._id);
-			question.save(async (err, answeredQuestion) => {
-				res.redirect('/question')
-			});
+			User.findOneAndUpdate(
+				{ _id: req.user.id },
+				{ $inc: { points: 20 } },
+				{ new: true },
+				async() => {
+					question.answers = question.answers || [];
+					question.answers.push(answer._id);
+					question.save(async (err, answeredQuestion) => {
+						res.redirect('/question/' + question._id )
+					});
+				});
 		});
 	} catch (err) {
 		console.log(err);
@@ -71,11 +97,17 @@ router.post('/:id/answer/', async (req, res, next) => {
 	}
 });
 
+// mark answer as correct
 router.post('/:questionid/:answerid/correct', async(req, res) => {
 	try {
 		const question = await Question.findById(req.params.questionid)
 		const answer = await Answer.findById(req.params.answerid)
 		if (question.askedBy = req.user.id) {
+			await User.findOneAndUpdate(
+				{ _id: answer.answeredBy },
+				{ $inc: { points: 50 } },
+				{ new: true },
+			);
 			question.correctAnswer = answer._id;
 			question.save();
 			res.redirect('/question')
@@ -165,4 +197,7 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 module.exports = router;

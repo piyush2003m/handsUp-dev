@@ -22,6 +22,12 @@
                         <p>votes: <%=answer.votes%></p>
                         <p>Answered By: <%=answer.answeredBy.displayName%></p>
                         <p>Email: <%=answer.answeredBy.email%></p>
+                        <form class="vote-up" data-id="<%=answer._id%>">
+                            <button type="submit">Vote Up</button>
+                          </form>
+                          <form class="vote-down" data-id="<%=answer._id%>">
+                            <button type="submit">Vote Down</button>
+                        </form>
                         <form method="POST" action="/question/<%=question._id%>/<%=answer._id%>/correct">
                             <button class="btn btn-lg btn-default btn-block btn-primary">Correct</button>
                         </form>
@@ -30,5 +36,8 @@
             <%})%>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script rel="script" src="/js/answers.js"></script>
 <%- include ('partials/footer.ejs') %>
 

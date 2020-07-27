@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const answerSchema = new mongoose.Schema({
-	votes: {
-        type: Number,
-        default: 0
-    },
     text: {
         type: String
     },
@@ -18,7 +14,17 @@ const answerSchema = new mongoose.Schema({
   },
   images: [
     {type: String} 
-  ]
+  ],
+  upVotes : [ 
+    { type: mongoose.Schema.Types.ObjectId, 
+    ref: "User"}
+],
+downVotes : [
+    { type: mongoose.Schema.Types.ObjectId, 
+    ref: "User"}
+],
+voteScore : {type: Number,
+default: 0}
 });
 
 module.exports = mongoose.model('Answer', answerSchema);
