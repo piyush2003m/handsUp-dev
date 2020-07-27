@@ -1,43 +1,181 @@
 <%- include ('partials/header.ejs') %>
+<link
+  href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+  rel="stylesheet"
+/>
 
-<div class="form-group" style="align-items: flex-end; width: 15%; margin-left: 82%;">
-    <button class="btn btn-lg btn-block btn-primary" style="float: inline-end;">
-       <a href="../question/<%=question._id%>/answer" style="color: black">Add Answer</a>
-    </button>
+<div
+  class="form-group"
+  style="align-items: flex-end; width: 15%; margin-left: 82%;"
+>
+  <button
+    class="btn btn-lg btn-block"
+    style="float: inline-end; background-color: #7bed9f; padding: 10px;"
+  >
+    <a href="../question/<%=question._id%>/answer" style="color: black;"
+      >Add An Answer</a
+    >
+  </button>
 </div>
 <div class="container">
-    <div style="width: 60%; margin: 25px auto">
-        <h2 style="padding-top: 10px; padding-left: 60px;"><%=question.topic%></h2>
-        <h4 style="padding-top: 10px; padding-left: 60px;"> <%=question.text%></h4>
-        <h6 style="text-align: end; margin-right: 30px;"><%=question.createdAt%></h6>
-        <hr style="border-top: 1px solid; margin-left: 30.0px; margin-right: 30.0px; opacity: 0.6;"/>
-        <br><br><br>
-        <div style = "height: 100px; width: 100; border: 2px solid; border-radius: 10px;" >
-        </div>
-        <br><br>
-            <% question.answers.forEach(function(answer){%>
-                <div class = "row", style="border: 1px solid black; border-radius: 10px; margin: 1.5em auto;">
-                    <div class="col"style="margin: 1.5em auto">
-                        <p>Answer: <%=answer.text%></p>
-                        <p>votes: <%=answer.votes%></p>
-                        <p>Answered By: <%=answer.answeredBy.displayName%></p>
-                        <p>Email: <%=answer.answeredBy.email%></p>
-                        <form class="vote-up" data-id="<%=answer._id%>">
-                            <button type="submit">Vote Up</button>
-                          </form>
-                          <form class="vote-down" data-id="<%=answer._id%>">
-                            <button type="submit">Vote Down</button>
-                        </form>
-                        <form method="POST" action="/question/<%=question._id%>/<%=answer._id%>/correct">
-                            <button class="btn btn-lg btn-default btn-block btn-primary">Correct</button>
-                        </form>
-                    </div>
-                </div>
-            <%})%>
+  <div style="width: 60%; margin: 25px auto;">
+    <h2
+      style="
+        padding-top: 10px;
+        padding-left: 60px;
+        font-family: 'Raleway', sans-serif;
+        text-decoration: underline;
+      "
+    >
+      <%=question.topic%>
+    </h2>
+    <h4 style="padding-top: 10px; margin-left: 60px; width: 100%;">
+      <%=question.text%>
+    </h4>
+    <br />
+    <h6
+      style="
+        float: right;
+        margin-right: 30px;
+        text-align: center;
+        font-size: 12px;
+        font-family: helvetica;
+        font-style: bold;
+        padding-top: 15px;
+        height: 40px;
+        width: 91%;
+        background-color: #7bed9f;
+      "
+    >
+      <%=question.createdAt%>
+    </h6>
+    <hr
+      style="
+        border-top: 1px solid;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 50px;
+        opacity: 0.6;
+      "
+    />
+    <br />
+    <% question.answers.forEach(function(answer){%>
+    <div
+      class="row"
+      ,
+      style="border: 3px solid black; border-radius: 10px; margin: 1.5em auto;"
+    >
+      <div class="col" style="margin: 1.5em auto;">
+        <p style="font-family: 'Raleway', sans-serif;">
+          <span
+            style="
+              background-color: #7bed9f;
+              padding: 8px;
+              border-radius: 5px;
+              font-family: 'Raleway', sans-serif;
+            "
+            >Answer</span
+          >:
+          <span style="font-family: 'Raleway', sans-serif;"
+            ><%=answer.text%></span
+          >
+        </p>
+        <p style="font-family: 'Raleway', sans-serif;">
+          <span
+            style="
+              background-color: #7bed9f;
+              padding: 8px;
+              border-radius: 5px;
+              font-family: 'Raleway', sans-serif;
+            "
+            >votes</span
+          >:
+          <span style="font-family: 'Raleway', sans-serif;"
+            ><%=answer.votes%></span
+          >
+        </p>
+        <p style="font-family: 'Raleway', sans-serif;">
+          <span
+            style="
+              background-color: #7bed9f;
+              padding: 8px;
+              border-radius: 5px;
+              font-family: 'Raleway', sans-serif;
+            "
+            >Answered By</span
+          >:
+          <span style="font-family: 'Raleway', sans-serif;"
+            ><%=answer.answeredBy.displayName%></span
+          >
+        </p>
+        <p style="font-family: 'Raleway', sans-serif;">
+          <span
+            style="
+              background-color: #7bed9f;
+              padding: 8px;
+              border-radius: 5px;
+              font-family: 'Raleway', sans-serif;
+            "
+            >Email</span
+          >:&nbsp;<span style="font-family: 'Raleway', sans-serif;"
+            ><%=answer.answeredBy.email%></span
+          >
+        </p>
+        <form class="vote-up" data-id="<%=answer._id%>">
+          <button
+            type="submit"
+            style="border-radius: 5px; float: left; background-color: #acf4a5;"
+          >
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
+              height="15px"
+              width="15px"
+            />
+          </button>
+        </form>
+        <form class="vote-down" data-id="<%=answer._id%>">
+          <button
+            type="submit"
+            style="
+              border-radius: 5px;
+              float: left;
+              margin-left: 10px;
+              background-color: #fd8874;
+            "
+          >
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
+              height="15px"
+              width="15px"
+              style="transform: rotate(180deg);"
+            />
+          </button>
+        </form>
+        <br /><br />
+        <form
+          method="POST"
+          action="/question/<%=question._id%>/<%=answer._id%>/correct"
+        >
+          <button
+            class="btn btn-lg btn-default btn-block"
+            style="background-color: #6ceccf;"
+          >
+            <span id="text">Correct</span>
+          </button>
+        </form>
+      </div>
     </div>
+    <%})%>
+  </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"
+></script>
 <script rel="script" src="/js/answers.js"></script>
 <%- include ('partials/footer.ejs') %>
-
