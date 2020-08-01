@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Question = require('../models/Question');
-const { ensureAuth, ensureGuest } = require('../middleware/auth');
+const { ensureAuth } = require('../middleware/auth');
 const Answer = require('../models/Answer');
 
 // GET to /
@@ -78,6 +78,7 @@ router.put("/posts/:id/vote-down", function(req, res) {
   });
 
   router.put("/answer/:id/vote-up", function(req, res) {
+	  console.log("route is hit")
 	Answer.findById(req.params.id).exec(function(err, post) {
 		if(err) {
 			console.log(err);

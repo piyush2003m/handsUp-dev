@@ -68,7 +68,13 @@ router.post('/', ensureAuth, async (req, res, next) => {
 router.get('/:id/answer', ensureAuth, async (req, res, next) => {
 	try {
 		var question = await Question.findById(req.params.id);
-		res.render('newAnswer', { question: question, currentUser: req.user });
+		const hasAnswered = question.answers.includes(req.user.id);
+		if (hasAnswered == true) {
+			res.redirect('/question')
+		}
+		else {
+			res.render('newAnswer', { question: question, currentUser: req.user });
+		}
 	} catch (err) {
 		console.log(err);
 		next(err);
@@ -137,9 +143,21 @@ router.get('/:id', ensureAuth, async (req, res) => {
             populate : {
                 path : 'answeredBy'
             }
-        })
-		res.render('specificQuestion', { question: question, currentUser: req.user });
-		console.log(question)
+		})
+		question.userViews = question.userViews || [];
+		const hasViewed = question.userViews.includes(req.user.id)
+			if(hasViewed == false) {
+				question.views = question.views + 1
+				question.userViews = question.userViews || [];
+				question.userViews.push(req.user.id)
+				question.save()
+			}
+		const hasAnswered = question.answers.includes(req.user.id);
+		var isAsker = false
+		if (question.askedBy == req.user.id) {
+			isAsker = true
+		}
+		res.render('specificQuestion', { question: question, currentUser: req.user, isAsker, hasAnswered });
 	} catch (err) {
 		console.log(err);
 		next(err);

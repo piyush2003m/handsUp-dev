@@ -1,4 +1,4 @@
-<%- include('partials/headernew.ejs') %>
+<%- include('partials/header.ejs') %>
 <link
   href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
   rel="stylesheet"
@@ -7,6 +7,8 @@
   href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
   rel="stylesheet"
 />
+
+<body>
 
 <div
   class="form-group"
@@ -36,6 +38,29 @@
     <h4 style="padding-top: 10px; margin-left: 60px; width: 100%;">
       <%=question.text%>
     </h4>
+    <form class="vote-up-question" data-id="<%=question._id%>">
+      <button type="submit" style="border-radius: 5px; float: left; background-color: #acf4a5;">
+        <img
+          src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
+          height="15px"
+          width="15px"
+        >
+      </button>
+    </form>
+    <form class="vote-down-question" data-id="<%=question._id%>">
+      <button type="submit" style="
+          border-radius: 5px;
+          float: left;
+          margin-left: 10px;
+          background-color: #fd8874;
+        ">
+        <img
+        src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
+        height="15px"
+        width="15px"
+        style="transform: rotate(180deg);">
+      </button>
+    </form>
     <br />
     <h6
       style="
@@ -93,7 +118,7 @@
               font-family: 'Raleway', sans-serif;
             "
             >votes</span
-          >:
+          >
           <span style="font-family: 'Raleway', sans-serif;"
             ><%=answer.voteScore%></span
           >
@@ -107,7 +132,7 @@
               font-family: 'Raleway', sans-serif;
             "
             >Answered By</span
-          >:
+          >
           <span style="font-family: 'Raleway', sans-serif;"
             ><%=answer.answeredBy.displayName%></span
           >
@@ -124,37 +149,31 @@
           >:&nbsp;<span style="font-family: 'Raleway', sans-serif;"
             ><%=answer.answeredBy.email%></span
           >
-        </p>
+        </p> 
         <form class="vote-up" data-id="<%=answer._id%>">
-          <button
-            type="submit"
-            style="border-radius: 5px; float: left; background-color: #acf4a5;"
-          >
+          <button type="submit" style="border-radius: 5px; float: left; background-color: #acf4a5;">
             <img
               src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
               height="15px"
               width="15px"
-            />
+            >
           </button>
         </form>
         <form class="vote-down" data-id="<%=answer._id%>">
-          <button
-            type="submit"
-            style="
-              border-radius: 5px;
-              float: left;
-              margin-left: 10px;
-              background-color: #fd8874;
-            "
-          >
-            <img
-              src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-              height="15px"
-              width="15px"
-              style="transform: rotate(180deg);"
-            />
-          </button>
-        </form>
+          <button type="submit" style="
+          border-radius: 5px;
+          float: left;
+          margin-left: 10px;
+          background-color: #fd8874;
+        ">
+        <img
+        src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
+        height="15px"
+        width="15px"
+        style="transform: rotate(180deg);">
+      </button>
+        </form>          
+        
         <br /><br />
         <form
           method="POST"

@@ -42,8 +42,18 @@ const questionSchema = new mongoose.Schema({
         { type: mongoose.Schema.Types.ObjectId, 
         ref: "User"}
     ],
-    voteScore : {type: Number,
-    default: 0}
+    voteScore : {
+        type: Number,
+        default: 0
+    },
+    views : {
+        type: Number,
+        default: 0
+    },
+    userViews : [ 
+        { type: mongoose.Schema.Types.ObjectId, 
+        ref: "User"}
+    ]
 });
 
 module.exports = mongoose.model('Question', questionSchema);
