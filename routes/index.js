@@ -27,7 +27,8 @@ router.get('/profile', ensureAuth, async(req, res, next) => {
 			myAnswers: myAnswers,
 			upVotedQuestions: upVotedQuestions,
 			upVotesAnswers: upVotesAnswers,
-			user: user 
+			user: user,
+			currentUser: user 
 		})
 	} catch(err) {
 		console.log(err);
