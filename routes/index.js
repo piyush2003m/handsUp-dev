@@ -19,6 +19,8 @@ router.get('/profile', ensureAuth, async(req, res, next) => {
 		const upVotedQuestions = await Question.find({upVotes: req.user.id})
 		const upVotesAnswers = await Question.find({upVotes: req.user.id})
 		const user = await User.findById(req.user.id)
+		console.log("unanswered"+ myQuestionsUnanswered)
+		console.log("my answers"+ myQuestionsUnanswered)
 		res.render('profile', {
 			myQuestionsUnanswered: myQuestionsUnanswered, 
 			myQuestionsAnswered: myQuestionsAnswered,
