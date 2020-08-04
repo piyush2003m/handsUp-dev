@@ -1,12 +1,69 @@
 <%- include('partials/header.ejs') %>
-<link
-  href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
-  rel="stylesheet"
-/>
-<link
-  href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
-  rel="stylesheet"
-/>
+<head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .voteDown {
+      display: inline-block;
+      overflow: hidden;
+      width: 40px;
+      height: 25px;
+      cursor: pointer;
+      background: url('http://i.stack.imgur.com/iqN2k.png');
+      -webkit-transform: rotateX(180deg);
+      transform: rotateX(180deg);
+      background-position: 0 -25px;
+    } 
+    .voteDownQuestion {
+      display: inline-block;
+      overflow: hidden;
+      width: 40px;
+      height: 25px;
+      cursor: pointer;
+      background: url('http://i.stack.imgur.com/iqN2k.png');
+      -webkit-transform: rotateX(180deg);
+      transform: rotateX(180deg);
+      background-position: 0 -25px;
+    } 
+    .voteUp {
+      display: inline-block;
+      overflow: hidden;
+      width: 40px;
+      height: 25px;
+      cursor: pointer;
+      background: url('http://i.stack.imgur.com/iqN2k.png');
+      background-position: 0 -25px;
+    } 
+    .voteUpQuestion {
+      display: inline-block;
+      overflow: hidden;
+      width: 40px;
+      height: 25px;
+      cursor: pointer;
+      background: url('http://i.stack.imgur.com/iqN2k.png');
+      background-position: 0 -25px;
+    } 
+    .voteDown.on {
+      background-position: 0 2px;
+    }
+    .voteDownQuestion.on {
+      background-position: 0 2px;
+    }
+    .voteUp.on {
+      background-position: 0 2px;
+    }
+    .voteUpQuestion.on {
+      background-position: 0 2px;
+    }
+  </style>
+</head>
 
 <body>
 
@@ -35,30 +92,18 @@
     >
       <%=question.topic%>
     </h2>
+    <h4 style="display: inline; "><%= question.voteScore %></h4>
     <h4 style="padding-top: 10px; margin-left: 60px; width: 100%;">
       <%=question.text%>
     </h4>
     <form class="vote-up-question" data-id="<%=question._id%>">
-      <button type="submit" style="border-radius: 5px; float: left; background-color: #acf4a5;">
-        <img
-          src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-          height="15px"
-          width="15px"
-        >
+      <button type="submit">
+        <span class="voteUpQuestion"> </span>
       </button>
     </form>
     <form class="vote-down-question" data-id="<%=question._id%>">
-      <button type="submit" style="
-          border-radius: 5px;
-          float: left;
-          margin-left: 10px;
-          background-color: #fd8874;
-        ">
-        <img
-        src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-        height="15px"
-        width="15px"
-        style="transform: rotate(180deg);">
+      <button type="submit">
+        <span class="voteDownQuestion"> </span>
       </button>
     </form>
     <br />
@@ -151,26 +196,13 @@
           >
         </p> 
         <form class="vote-up" data-id="<%=answer._id%>">
-          <button type="submit" style="border-radius: 5px; float: left; background-color: #acf4a5;">
-            <img
-              src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-              height="15px"
-              width="15px"
-            >
+          <button type="submit">
+            <span class="voteUp"> </span>
           </button>
         </form>
         <form class="vote-down" data-id="<%=answer._id%>">
-          <button type="submit" style="
-          border-radius: 5px;
-          float: left;
-          margin-left: 10px;
-          background-color: #fd8874;
-        ">
-        <img
-        src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"
-        height="15px"
-        width="15px"
-        style="transform: rotate(180deg);">
+          <button>
+        <span class="voteDown"> </span>
       </button>
         </form>          
         

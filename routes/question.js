@@ -19,6 +19,11 @@ router.get('/', async (req, res, next) => {
 			}
 			res.render('ques', { question: foundQuestion, noMatch: noMatch, currentUser: req.user });
 		}
+		if (req.query.subject) {
+			const subjects = req.query.subject
+			const foundQuestion = await Question.find({subject: {$in: subjects}})
+			res.render('ques', { question: foundQuestion, currentUser: req.user, subjects: subjects });
+		}
 		else {
 			const foundQuestion = await Question.find({"correctAnswer" : null})
 			// .populate({

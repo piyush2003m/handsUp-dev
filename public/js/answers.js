@@ -66,3 +66,31 @@ $(document).ready(function() {
     });
   });
 });
+
+for (const btn of document.querySelectorAll('.voteDown')) {
+  btn.addEventListener('click', event => {
+    event.target.classList.toggle('on');
+    document.querySelector('.voteUp').classList.remove('on')
+  });
+}
+
+for (const btn of document.querySelectorAll('.voteUp')) {
+  btn.addEventListener('click', event => {
+    event.target.classList.toggle('on');
+    document.querySelector('.voteDown').classList.remove('on')
+  });
+}
+
+for (const btn of document.querySelectorAll('.voteDownQuestion')) {
+  btn.addEventListener('click', event => {
+    event.target.classList.toggle('on');
+    document.querySelector('.voteUpQuestion').classList.remove('on')
+  });
+}
+
+for (const btn of document.querySelectorAll('.voteUpQuestion')) {
+  btn.addEventListener('click', event => {
+    event.target.classList.toggle('on');
+    document.querySelector('.voteDownQuestion').classList.remove('on')
+  });
+}

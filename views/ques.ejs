@@ -1,5 +1,4 @@
 <%- include('partials/header.ejs') %>
-<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -121,9 +120,47 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="wrapper-one">
+			<form method="GET" action="/question" class="form-inline">
+				<div class="form-check mr-2">
+					<input  class="form-check-input" name="subject" type="checkbox" value="Chemistry" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+					  Chemistry
+					</label>
+				</div>
+				<div class="form-check mx-2">
+					<input class="form-check-input" name="subject" type="checkbox" value="Physics" id="defaultCheck2">
+					<label class="form-check-label" for="defaultCheck2">
+					  Physics
+					</label>
+				</div>
+				<div class="form-check mx-2">
+					<input class="form-check-input" name="subject" type="checkbox" value="Biology" id="defaultCheck3">
+					<label class="form-check-label" for="defaultCheck3">
+					  Biology
+					</label>
+				</div>
+				<div class="form-check mx-2">
+					<input class="form-check-input" name="subject" type="checkbox" value="Maths" id="defaultCheck4">
+					<label class="form-check-label" for="defaultCheck4">
+					  Maths
+					</label>
+				</div>
+				<div class="form-check mx-2">
+					<input class="form-check-input" name="subject" type="checkbox" value="English" id="defaultCheck5">
+					<label class="form-check-label" for="defaultCheck5">
+					  Biology
+					</label>
+				</div>
+				<button class="btn btn-outline-dark my-2 my-sm-0 mx-2" type="submit">
+					Search
+				</button>	  
+			</form>
+			<form method="GET" action="/question" class="form-inline">
+				<button class="btn btn-outline-dark my-2 my-sm-0 mx-2">Reset</button>
+			</form>
+			<div style="margin-top: 30px;" class="wrapper-one">
 				<div class="header">
-					<h2 class="top">Top</h2>
+					<h2 style="margin-top: 70px;" class="top">Top</h2>
 					<h2 class="q">Questions</h2>
 				</div>
 
