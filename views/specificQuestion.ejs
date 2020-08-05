@@ -92,20 +92,22 @@
     >
       <%=question.topic%>
     </h2>
-    <h4 style="display: inline; "> Votes: <%= question.voteScore %></h4>
     <h4 style="padding-top: 10px; margin-left: 60px; width: 100%;">
       <%=question.text%>
     </h4>
-    <form class="vote-up-question" data-id="<%=question._id%>">
-      <button type="submit">
-        <span class="voteUpQuestion"> </span>
-      </button>
-    </form>
-    <form class="vote-down-question" data-id="<%=question._id%>">
-      <button type="submit">
-        <span class="voteDownQuestion"> </span>
-      </button>
-    </form>
+    <div style="display: inline; margin-left: 60px">
+      <h4 style="display: inline; "> Votes: <%= question.voteScore %></h4>
+      <form  class="vote-up-question" data-id="<%=question._id%>">
+        <button type="submit">
+          <span class="voteUpQuestion"> </span>
+        </button>
+      </form>
+      <form class="vote-down-question" data-id="<%=question._id%>">
+        <button type="submit">
+          <span class="voteDownQuestion"> </span>
+        </button>
+      </form>
+    </div>
     <br />
     <h6
       style="
@@ -213,7 +215,8 @@
         >
           <button
             class="btn btn-lg btn-default btn-block"
-            style="background-color: #6ceccf;"
+            style="background-color: #7bed9f"
+            width: 20%;
           >
             <span id="text">Correct</span>
           </button>
