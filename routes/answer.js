@@ -7,10 +7,12 @@ const Answer = require('../models/Answer');
 var ObjectId = require('mongodb').ObjectID;
 
 // POST /id/answer/show all answers to a question
-router.get('/', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
 	try {
-		const foundAnswer = await Answer.find({});
-		res.json({ foundAnswer });
+		const foundAnswer = await Answer.findById(req.params.id)
+		const foundQuestion = await Question.find({answers: foundAnswer._id})
+		const questionId = ObjectID(foundQuestion._id)
+		return res.redirect('/question/' + questionId)
 	} catch (err) {
 		console.log(err);
 		next(err);

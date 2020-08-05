@@ -124,13 +124,11 @@
         <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:130px;" >My Answers</h5>
     <br>
     <ul>
-        <% myQuestionsAnswered.forEach(function(myQuestionsAnswered){ %>
-            <li>Topic: <%= myQuestionsAnswered.topic %>(<%= myQuestionsAnswered.subject  %>)</li>
-            <li style="text-indent:35px;">Question: <%= myQuestionsAnswered.text %></li>
-            
+        <% myAnswers.forEach(function(myAnswer){ %>
+            <a href="/answer/<%= myAnswer._id %>"><li>Text: <%= myAnswer.text %></li></a>            
         <% }) %>
     </ul>
-    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:218px;">My Up Voted Answers</h5>
+    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:218px;">Up Voted Answers</h5>
     <br>
     <ul>
         <% upVotedQuestions.forEach(function(upVotedQuestions){ %>
@@ -142,29 +140,29 @@
     </h3>
 </div>
     <div id="que" style="display:none;" class="question"><h3 style="background-color:rgba(123, 237, 159, 0.7);width:130px;">Questions</h3><br><br>
-    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:250px;">My Unanswered Questions</h5>
+    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:250px;">Unsolved Questions</h5>
     <br>
     <ul>
         <% myQuestionsUnanswered.forEach(function(myQuestionsUnanswered){ %>
-            <li>Topic: <%= myQuestionsUnanswered.topic %>(<%= myQuestionsUnanswered.subject  %>)</li>
+            <a href="/question/<%= myQuestionsUnanswered._id %>"><li>Topic: <%= myQuestionsUnanswered.topic %>(<%= myQuestionsUnanswered.subject  %>)</li></a>
             <li style="text-indent:35px;">Question: <%= myQuestionsUnanswered.text %></li>
             
         <% }) %>
     </ul>
-    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:220px;" >My Answered Questions</h5>
+    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:220px;" >Solved Questions</h5>
     <br>
     <ul>
         <% myQuestionsAnswered.forEach(function(myQuestionsAnswered){ %>
-            <li>Topic: <%= myQuestionsAnswered.topic %>(<%= myQuestionsAnswered.subject  %>)</li>
+            <a href="/question/<%= myQuestionsAnswered._id %>"><li>Topic: <%= myQuestionsAnswered.topic %>(<%= myQuestionsAnswered.subject  %>)</li></a>
             <li style="text-indent:35px;">Question: <%= myQuestionsAnswered.text %></li>
             
         <% }) %>
     </ul>
-    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:218px;">My Up Voted Questions</h5>
+    <h5 style="text-decoration:underline;background-color:rgba(123, 237, 159, 0.7);width:218px;">Up Voted Questions</h5>
     <br>
     <ul>
         <% upVotedQuestions.forEach(function(upVotedQuestions){ %>
-            <li>Topic: <%= upVotedQuestions.topic %>(<%= upVotedQuestions.subject  %>)</li>
+            <a href="/question/<%= upVotedQuestions._id %>"><li>Topic: <%= upVotedQuestions.topic %>(<%= upVotedQuestions.subject  %>)</li></a>
             <li style="text-indent:35px;">Question: <%= upVotedQuestions.text %></li>
             
         <% }) %>

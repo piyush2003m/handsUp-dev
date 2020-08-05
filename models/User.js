@@ -13,7 +13,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	points: Number,
+	points: {
+		type: Number,
+		default: 0
+	}, 
 	role: String,
 	email: String,
 	image: String,

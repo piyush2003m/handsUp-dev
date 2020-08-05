@@ -10,6 +10,11 @@ router.get('/', (req, res, next) => {
 	res.render('index');
 });
 
+router.get('/leaderboard', ensureAuth, async(req, res, next) => {
+	const users = await User.find({}).sort({points: -1});
+	res.render('leaderboard', {currentUser: req.user, users })
+})
+
 // profile page of user
 router.get('/profile', ensureAuth, async(req, res, next) => {
 	try {

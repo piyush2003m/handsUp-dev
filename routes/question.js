@@ -17,19 +17,22 @@ router.get('/', async (req, res, next) => {
 			if (foundQuestion.length < 1) {
 				noMatch = "Sorry no matching questions were found"
 			}
-			res.render('ques', { question: foundQuestion, noMatch: noMatch, currentUser: req.user });
+			return res.render('ques', { question: foundQuestion, noMatch: noMatch, currentUser: req.user });
+			next()
 		}
-		if (req.query.subject) {
+		else if (req.query.subject) {
 			const subjects = req.query.subject
 			const foundQuestion = await Question.find({subject: {$in: subjects}})
-			res.render('ques', { question: foundQuestion, currentUser: req.user, subjects: subjects });
+			return res.render('ques', { question: foundQuestion, currentUser: req.user, subjects: subjects });
+			next()
 		}
 		else {
 			const foundQuestion = await Question.find({"correctAnswer" : null})
 			// .populate({
 			// 	path : 'askedBy',
 			// });
-			res.render('ques', { question: foundQuestion, currentUser: req.user });
+			return res.render('ques', { question: foundQuestion, currentUser: req.user });
+			next()
 		}
 	} catch (err) {
 		console.log(err);
